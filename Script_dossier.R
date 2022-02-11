@@ -553,18 +553,24 @@ ggplot(VAR,aes(x = Datetest))+
 
 #CairoPNG(filename = "Comp_VAR_Riskmetrics_Std.png", width = 800, height = 500)
 ggplot(VAR,aes(x = Datetest))+
-  geom_line(aes(y = V1),color = "blue",show.legend = T)+
-  geom_line(aes(y = V2), color = "red",show.legend = T)+
-  geom_line(aes(y = V3), color = "green",show.legend = T)+
-  geom_line(aes(y = V4), color = "yellow",show.legend = T)+
+  geom_line(aes(y = V1, colour = "GARCH (N)"), size=1.1)+
+  geom_line(aes(y = V2, colour = "Riskmetrics (N)"), size=1.1)+
+  geom_line(aes(y = V3, colour = "GARCH (St)"), size=1.1)+
+  geom_line(aes(y = V4, colour = "Riskmetrics (St)"), size=1.1)+
+  scale_color_manual(name = "Modèle :", values = c("GARCH (N)" = "blue", 
+                                                   "Riskmetrics (N)" = "red",
+                                                   "GARCH (St)" = "green",
+                                                   "Riskmetrics (St)" = "black"))+
   scale_x_date(date_breaks = "2 month",date_labels = "%Y-%m") +
   theme(axis.text.x = element_text(face="bold", size=10),
         axis.text.y = element_text(face = "bold", size = 10),
-        legend.position = "left")+
+        legend.position = "right")+
   xlab("Date")+
-  ylab("VAR")+
-  scale_fill_discrete(labels=c("Returns","VAR"))
+  ylab("VAR")
 #dev.off()
+
+
+
 
 ### Calculs de diff?rentes mesures ###
 
